@@ -1,12 +1,48 @@
 # Yksikkötestaus Jest-työkalulla
 
-Tässä tehtävässä harjoitellaan yksikkötestausta [Jest-työkalulla](https://jestjs.io/) Node.js-ympäristössä. Tehtävänäsi on kirjoittaa yksikkötestit valmiiksi annetulle `finnishDateString`-funktiolle, joka muotoilee sille annetun `Date`-olion suomenkieliseksi merkkijonoksi, kuten `'maanantai 1. tammikuuta 2024'`.
+Tässä tehtävässä harjoitellaan yksikkötestausta [Jest-työkalulla](https://jestjs.io/) Node.js-ympäristössä. Tehtävänäsi on kirjoittaa yksikkötestit valmiiksi annetulle [`finnishDateString`-funktiolle](./src/dateFormatter.ts), joka muotoilee sille annetun `Date`-olion suomenkieliseksi merkkijonoksi.
 
 Tehtävä on kaksiosainen:
 
 1. Ensimmäisessä osassa sinun tulee kirjoittaa funktiolle yksikkötestit, joiden avulla löydät funktiossa mahdollisesti piilevät virheet.
 
 2. Toisessa osassa sinun tulee muokata annettua koodia niin, että funktio toimii toivotulla tavalla.
+
+
+## Testattava ja korjattava koodi
+
+Tässä tehtävässä käsitellään [`dateFormatter.ts`-tiedostossa](./src/dateFormatter.ts) sijaitsevaan `finnishDateString`-funktiota. Funktion on tarkoitus muotoilla sille annettu `Date`-olion suomenkieliseksi merkkijonoksi ja palauttaa esimerkiksi teksti `'maanantai 1. tammikuuta 2024'`:
+
+```ts
+const dayNames: readonly string[] = [
+    'maanantai', 'tiistai', 'keskiviikko',
+    'torstai', 'perjantai', 'lauantai', 'sunnuntai'
+];
+
+const monthNames: readonly string[] = [
+    'tammi', 'helmi', 'maalis', 'huhti', 'touko', 'kesä',
+    'heinä', 'elo', 'syys', 'loka', 'marras', 'joulu'
+];
+
+/**
+ * Formats and returns the given date as a Finnish date string, such as
+ * 'maanantai 1. tammikuuta 2024'.
+ *
+ * @param date the date to format
+ * @returns the formatted string, in Finnish
+ */
+export function finnishDateString(date: Date): string {
+    const dayName = dayNames[date.getDay() - 1];
+    const monthName = monthNames[date.getMonth() - 1];
+
+    const day = date.getDate();
+    const year = date.getFullYear();
+
+    return `${dayName} ${day}. ${monthName}kuuta ${year}`;
+}
+```
+
+Valmis koodi sisältää kuitenkin virheitä, joiden vuoksi muodostetut merkkijonot eivät välttämättä vastaa odotettuja...
 
 
 ## GitHub classroom
@@ -38,7 +74,7 @@ Riippuvuudet sisältävät sekä [TypeScript-kielen](https://www.npmjs.com/packa
 
 ## Ohjelman suorittaminen
 
-Tässä tehtävässä tarkoituksena on harjoitella yksikkötestausta, eli testata yksittäistä ohjelman osaa erillään muusta mahdollisesta koodista. Tehtävässä ei siis ole lainkaan käyttöliittymää, jonka kautta voisit kokeilla funktion toimintaa "manuaalisesti".
+Tässä tehtävässä tarkoituksena on harjoitella yksikkötestausta, eli testata yksittäistä ohjelman osaa erillään muusta mahdollisesta koodista. Tehtävässä ei siis ole lainkaan käyttöliittymää, jonka kautta voisit kokeilla funktion toimintaa manuaalisesti.
 
 Oman "pääohjelman" kirjoittaminen `finnishDateString`-funktion kokeilemiseksi ei ole kiellettyä, mutta kannustamme vahvasti keskittymään funktion yksikkötestaukseen ja jättämään mahdolliset muut skriptit kirjoittamatta.
 
@@ -67,55 +103,34 @@ Yllä [Jest-komennolle](https://jestjs.io/docs/cli) annetaan kaksi parametria, j
 
 * `--coverage` "Indicates that test coverage information should be collected and reported in the output." ([jestjs.io](https://jestjs.io/docs/cli))
 
-
 Älä muuta testien käynnistyskomentoa. Mikäli testit eivät mene läpi, kiinnitä erityisesti huomiota saamasi virheraportin *Message*-kohtiin.
 
 
 ## Osa 1: Omien testien kirjoittaminen (2p)
 
-Tehtävän ensimmäisessä osassa sinun tulee kirjoittaa yksikkötestit [`dateFormatter.ts`-tiedostossa](./src/dateFormatter.ts) sijaitsevalle `finnishDateString`-funktiolle. Funktion on tarkoitus muotoilla sille annettu `Date`-olion suomenkieliseksi merkkijonoksi ja palauttaa esimerkiksi teksti `'maanantai 1. tammikuuta 2024'`:
+Tehtävän ensimmäisessä osassa sinun tulee kirjoittaa yksikkötestit [`dateFormatter.ts`-tiedostossa](./src/dateFormatter.ts) sijaitsevalle `finnishDateString`-funktiolle. Funktion on tarkoitus muotoilla sille annettu `Date`-olion suomenkieliseksi merkkijonoksi ja palauttaa esimerkiksi teksti `'maanantai 1. tammikuuta 2024'`.
 
-```ts
-const dayNames: readonly string[] = [
-    'maanantai', 'tiistai', 'keskiviikko',
-    'torstai', 'perjantai', 'lauantai', 'sunnuntai'
-];
+Suosittelemme kirjoittamaan testit tiedostoon [src/tests/dateFormatter.test.ts](./src/tests/dateFormatter.test.ts). Mikäli kirjoitat myös muita testitiedostoja, lisää niiden nimen päätteeksi `.test.ts` ja huolehdi, että testit ovat `src`-hakemiston alla, jotta Jest löytää ja suorittaa testit. Voit hyödyntää testeissäsi joko [Jest:in `expect`-syntaksia](https://jestjs.io/docs/expect) tai [Node.js:n `assert`-syntaksia](https://nodejs.org/api/assert.html).
 
-const monthNames: readonly string[] = [
-    'tammi', 'helmi', 'maalis', 'huhti', 'touko', 'kesä',
-    'heinä', 'elo', 'syys', 'loka', 'marras', 'joulu'
-];
+**Tehtävän ensimmäisessä osassa testisi saavat tuottaa `failed`-tuloksen**, mutta testiraportista on käytävä ilmi, että `dateFormatter.ts`-tiedosto on testattu:
 
-/**
- * Formats and returns the given date as a Finnish date string, such as
- * 'maanantai 1. tammikuuta 2024'.
- *
- * @param date the date to format
- * @returns the formatted string, in Finnish
- */
-export function finnishDateString(date: Date): string {
-    const dayName = dayNames[date.getDay() - 1];
-    const monthName = monthNames[date.getMonth() - 1];
-
-    const day = date.getDate();
-    const year = date.getFullYear();
-
-    return `${dayName} ${day}. ${monthName}kuuta ${year}`;
-}
 ```
-
-Valmis koodi sisältää virheitä, joiden vuoksi muodostetut merkkijonot eivät välttämättä vastaa odotettuja.
-
-Suosittelemme kirjoittamaan testit tiedostoon [src/tests/dateFormatter.test.ts](./src/tests/dateFormatter.test.ts). Mikäli kirjoitat myös muita testitiedostoja, lisää niiden nimen päätteeksi `.test.ts` ja huolehdi, että testit ovat `src`-hakemiston alla.
-
-Voit hyödyntää testeissäsi joko [Jest:in expect-syntaksia](https://jestjs.io/docs/expect) tai [Node.js:n assert-syntaksia](https://nodejs.org/api/assert.html).
+------------------|---------|----------|---------|---------|-------------------
+File              | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+------------------|---------|----------|---------|---------|-------------------
+All files         |     100 |      100 |     100 |     100 |
+ dateFormatter.ts |     100 |      100 |     100 |     100 |
+------------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 failed, 1 total
+Tests:       4 failed, 4 total
+```
 
 
 ## Osa 2: Funktiossa olevien virheiden korjaaminen (3p)
 
-Tehtävän toisessa osassa sinun tulee korjata annettu funktio siten, että se läpäisee kirjoittamasi testit. Palautetun merkkijonon tulee olla välimerkkejä myöten samassa muodossa kuin tehtävänannossa, eli esim. `'maanantai 1. tammikuuta 2024'`.
+Tehtävän toisessa osassa sinun tulee muokata annettua koodia siten, että funktio läpäisee kirjoittamasi testit. Palautetun merkkijonon tulee olla välimerkkejä myöten samassa muodossa kuin tehtävänannossa, eli esim. `'maanantai 1. tammikuuta 2024'` tai `'sunnuntai 31. joulukuuta 2023'`.
 
-Ratkaisusi testataan kirjoittamiesi testien lisäksi GitHub classroom -palvelussa myös lisätesteillä nimeltä `allBugsNeedToBeFixed.test.ts`. Mikäli korjattu koodi läpäisee omat testisi, kiinnitä GitHub actions -välilehdellä erityistä huomiota näiden testien tuloksiin:
+Ratkaisusi testataan GitHub classroom -palvelussa kirjoittamiesi testien lisäksi lisätesteillä nimeltä `allBugsNeedToBeFixed.test.ts`. Mikäli korjattu koodi läpäisee omat testisi mutta ei näitä testejä, kiinnitä GitHub actions -välilehdellä erityistä huomiota seuraavien testien tuloksiin:
 
 ```
 PASS  allBugsNeedToBeFixed.test.ts
@@ -129,9 +144,9 @@ PASS  allBugsNeedToBeFixed.test.ts
 
 ## Vinkit ohjelmalogiikan korjaamiseksi
 
-Ohjelmalogiikan korjaamiseksi on ensiarvoisen tärkeää selvittää, miten siinä käytetyt yksittäiset osat toimivat. Annetussa koodissa olevat virheet johtuvat kenties virheellisistä olettamuksista esimerkiksi yksittäisten numeroarvojen merkityksessä päivämäärien ja kuukausien yhteydessä.
+Ohjelmalogiikan korjaamiseksi on ensiarvoisen tärkeää tietää, miten siinä käytetyt yksittäiset osat toimivat. Annetussa koodissa olevat virheet johtuvat kenties virheellisistä olettamuksista esimerkiksi yksittäisten numeroarvojen merkityksessä viikonpäivien ja kuukausien numeroinnin yhteydessä.
 
-Tutustu siis JavaScriptin `Date`-luokan dokumentaatioon [Mozillan mdn web docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) -sivustolla. Siellä kannattaa lukea erityisesti kohdat [getDate()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate) sekä [getMonth()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth).
+Tutustu siis JavaScriptin `Date`-luokan dokumentaatioon esimerkiksi [Mozillan mdn web docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date) -sivustolla. Siellä kannattaa lukea erityisesti kohdat [getDate()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getDate) sekä [getMonth()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getMonth).
 
 Voit kysellä lisää vinkkejä kurssin keskustelukanavalla.
 
