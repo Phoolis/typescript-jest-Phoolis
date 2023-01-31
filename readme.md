@@ -6,7 +6,7 @@ Tehtävä on kaksiosainen:
 
 1. Ensimmäisessä osassa sinun tulee kirjoittaa funktiolle yksikkötestit, joiden avulla löydät funktiossa mahdollisesti piilevät virheet.
 
-2. Toisessa osassa sinun tulee muokata annettua koodia niin, että funktio toimii toivotulla tavalla.
+2. Toisessa osassa sinun tulee muokata annettua koodia niin, että funktio toimii toivotulla tavalla ja testit menevät läpi.
 
 
 ## Testattava ja korjattava koodi
@@ -130,7 +130,7 @@ Tests:       4 failed, 4 total
 
 Tehtävän toisessa osassa sinun tulee muokata annettua koodia siten, että funktio läpäisee kirjoittamasi testit. Palautetun merkkijonon tulee olla välimerkkejä myöten samassa muodossa kuin tehtävänannossa, eli esim. `'maanantai 1. tammikuuta 2024'` tai `'sunnuntai 31. joulukuuta 2023'`.
 
-Ratkaisusi testataan GitHub classroom -palvelussa kirjoittamiesi testien lisäksi lisätesteillä nimeltä `allBugsNeedToBeFixed.test.ts`. Mikäli korjattu koodi läpäisee omat testisi mutta ei näitä testejä, kiinnitä GitHub actions -välilehdellä erityistä huomiota seuraavien testien tuloksiin:
+Ratkaisusi testataan GitHub classroom -palvelussa **kirjoittamiesi testien lisäksi** myös valmiilla testeillä. Mikäli korjattu koodi läpäisee omat testisi mutta ei näitä valmiita testejä, kiinnitä GitHub actions -välilehdellä erityistä huomiota seuraavien testien tuloksiin:
 
 ```
 PASS  allBugsNeedToBeFixed.test.ts
