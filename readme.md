@@ -151,6 +151,17 @@ Tutustu siis JavaScriptin `Date`-luokan dokumentaatioon esimerkiksi [Mozillan md
 Voit kysellä lisää vinkkejä kurssin keskustelukanavalla.
 
 
+## Date-luokan historia ja tulevaisuus
+
+Tehtävässä ilmenneet bugit johtuvat mahdollisesti joistain `Date`-luokan epäloogisuuksista:
+
+> *"It is now common knowledge that in 1995 Brendan \[Eich\] was given only 10 days to write the JavaScript language and get it into Netscape. Date handling is a fundamental part of almost all programming languages, and JavaScript had to have it. That said, it’s a complex problem domain and there was a short timeline. Brendan, under orders to “make it like Java” copied the date object from the existing, infant, `java.Util.Date` date implementation. This implementation was frankly terrible. In fact, basically all of it’s methods were deprecated and replaced in the Java 1.1 release in 1997. Yet we’re still living with this API 20 years later in the JavaScript programming language."*
+>
+> Maggie Pint, 2017. Fixing JavaScript Date – Getting Started. https://maggiepint.com/2017/04/09/fixing-javascript-date-getting-started/
+
+`Date`-luokan epäkohtia on tunnistettu laajasti ja niiden ratkaisemiseksi on luotu mm. lukuisia erillisiä npm-paketteja. JavaScriptin tuleviin versioihin on myös ehdotettu uutta [Temporal-oliota](https://tc39.es/proposal-temporal/docs/index.html), jonka hyväksymisprosessi on vielä kesken. `Temporal` on kokeiltavissa jo etukäteen [erillisenä npm-pakettina](https://www.npmjs.com/package/@js-temporal/polyfill).
+
+
 ## Lisenssit ja tekijänoikeudet
 
 Tämän tehtävän on kehittänyt Teemu Havulinna ja se on lisensoitu [Creative Commons BY-NC-SA -lisenssillä](https://creativecommons.org/licenses/by-nc-sa/4.0/).
