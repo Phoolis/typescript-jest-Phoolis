@@ -47,7 +47,7 @@ Valmis koodi sisältää kuitenkin virheitä, joiden vuoksi muodostetut merkkijo
 
 ### Koodin aikavyöhykkeet 🕚 vs. 🕐
 
-Aikavyöhykkeisiin ja kesä- sekä talviaikaan liittyvien mahdollisten ongelmien välttämiseksi annetussa koodissa päivää ja kuukautta käsitellään [UTC-ajassa (Coordinated Universal Time)](https://en.wikipedia.org/wiki/Coordinated_Universal_Time). "Normaalit" metodit, kuten `getDate()` ja `getFullYear()`, palauttavat samalle ajanhetkelle eri arvoja käyttöjärjestelmän aikavyöhykkeestä riippuen. GitHub classroom -testit ajetaan eri aikavyöhykkeellä kuin millä kirjoitat koodisi, joten sekaannusten välttämiseksi suosittelemme vahvasti käyttämään tässä tehtävässä ainoastaan UTC-aikavyöhykkeelle sijoittuvia aikoja.
+Aikavyöhykkeisiin ja kesä- sekä talviaikaan liittyvien mahdollisten ongelmien välttämiseksi annetussa koodissa annettua ajanhetkeä käsitellään [UTC-ajassa (Coordinated Universal Time)](https://en.wikipedia.org/wiki/Coordinated_Universal_Time). "Normaalit" metodit (`getDate()`, `getFullYear()`...) palauttavat puolestaan samalle ajanhetkelle eri arvoja käyttöjärjestelmän aikavyöhykkeestä riippuen. GitHub classroom -testit ajetaan eri aikavyöhykkeellä kuin millä kirjoitat koodisi, joten sekaannusten välttämiseksi suosittelemme vahvasti käyttämään tässä tehtävässä ainoastaan UTC-aikavyöhykkeelle sijoittuvia aikoja.
 
 Luodessasi `Date`-olioita merkkijonojen perusteella, ne tulkitaan UTC-ajaksi, mikäli merkkijonossa ei esiinny kellonaikaa. Jos taas lisäät mukaan kellonajan, tulkitaan se paikalliseksi ajaksi:
 
@@ -55,7 +55,7 @@ Luodessasi `Date`-olioita merkkijonojen perusteella, ne tulkitaan UTC-ajaksi, mi
 >
 > https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date#date_string
 
-Luontitavasta riippuen `Date`-oliosi saattaa siis olla eri aikavyöhykkeellä kuin millä tarkoitit ja sen päivämäärä saattaa olla eri kuin minkä tarkoitit. Mikäli kohtaat aikavyöhykeongelmia, suosittelemme tutustumaan [Date-luokan dokumentaatioon](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date) ja kysymään tarvittaessa vinkkejä Teamsissa.
+Luontitavasta riippuen `Date`-oliosi saattavat siis olla eri aikavyöhykkeellä kuin millä tarkoitit, joten niiden päivämäärät saattavat vaihdella. Mikäli kohtaat aikavyöhykeongelmia, suosittelemme tutustumaan [Date-luokan dokumentaatioon](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date) ja kysymään tarvittaessa vinkkejä Teamsissa.
 
 
 ## GitHub classroom
