@@ -47,7 +47,7 @@ Valmis koodi sisältää kuitenkin virheitä, joiden vuoksi muodostetut merkkijo
 
 ### Koodin aikavyöhykkeet 🕚 vs. 🕐
 
-Aikavyöhykkeisiin ja kesä- sekä talviaikaan liittyvien mahdollisten ongelmien välttämiseksi annetussa koodissa annettua ajanhetkeä käsitellään [UTC-ajassa (Coordinated Universal Time)](https://en.wikipedia.org/wiki/Coordinated_Universal_Time). "Normaalit" metodit (`getDate()`, `getFullYear()`...) palauttavat puolestaan samalle ajanhetkelle eri arvoja käyttöjärjestelmän aikavyöhykkeestä riippuen. GitHub classroom -testit ajetaan eri aikavyöhykkeellä kuin millä kirjoitat koodisi, joten sekaannusten välttämiseksi suosittelemme vahvasti käyttämään tässä tehtävässä ainoastaan UTC-aikavyöhykkeelle sijoittuvia aikoja.
+Aikavyöhykkeisiin ja kesä- sekä talviaikaan liittyvien mahdollisten ongelmien välttämiseksi annetussa koodissa annettua ajanhetkeä käsitellään [UTC-ajassa (Coordinated Universal Time)](https://en.wikipedia.org/wiki/Coordinated_Universal_Time). "Normaalit" metodit, kuten `getDate()` ja `getFullYear()`, palauttavat aikavyöhykkeestä riippuen samalle ajanhetkelle eri arvoja käyttöjärjestelmän aikavyöhykkeestä riippuen. GitHub classroom -testit ajetaan eri aikavyöhykkeellä kuin millä kirjoitat koodisi, joten sekaannusten välttämiseksi suosittelemme vahvasti käyttämään tässä tehtävässä ainoastaan UTC-aikavyöhykkeelle sijoittuvia aikoja.
 
 Luodessasi `Date`-olioita merkkijonojen perusteella, ne tulkitaan UTC-ajaksi, mikäli merkkijonossa ei esiinny kellonaikaa. Jos taas lisäät mukaan kellonajan, tulkitaan se paikalliseksi ajaksi:
 
