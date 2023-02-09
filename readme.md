@@ -82,7 +82,7 @@ Luodessasi `Date`-olioita merkkijonojen perusteella, ne tulkitaan UTC-ajaksi, mi
 >
 > https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date#date_string
 
-Voit itse päättää, luotko testeissäsi käytettävät `Date`-oliot UTC-ajalla vai käyttäen paikallista aikavyöhykettä. Mikäli kohtaat aikavyöhykeongelmia, suosittelemme tutustumaan [Date-luokan dokumentaatioon](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date) ja keskustelemaan aiheesta Teamsissa.
+Voit itse päättää, luotko testeissäsi käytettävät `Date`-oliot UTC-ajalla vai käyttäen paikallista aikavyöhykettä, molemmat saattavat tässä tehtävässä toimia. Mikäli kohtaat aikavyöhykeongelmia, suosittelemme tutustumaan [Date-luokan dokumentaatioon](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date) ja keskustelemaan aiheesta Teamsissa.
 
 
 ## GitHub classroom
