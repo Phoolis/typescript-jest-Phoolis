@@ -16,11 +16,11 @@ const monthNames: readonly string[] = [
  * @returns the formatted string, in Finnish
  */
 export function finnishDateString(date: Date): string {
-    const dayName = dayNames[date.getUTCDay() - 1];
-    const monthName = monthNames[date.getUTCMonth() - 1];
+    const dayName = dayNames[date.getDay() - 1];
+    const monthName = monthNames[date.getMonth() - 1];
 
-    const day = date.getUTCDate();
-    const year = date.getUTCFullYear();
+    const day = date.getDate();
+    const year = date.getFullYear();
 
     return `${dayName} ${day}. ${monthName}kuuta ${year}`;
 }
