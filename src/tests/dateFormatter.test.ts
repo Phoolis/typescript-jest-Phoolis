@@ -1,7 +1,9 @@
-import { test, describe, expect } from '@jest/globals';
-import { strict as assert } from 'node:assert';
-import { finnishDateString } from '../dateFormatter';
+import { test, describe, expect } from '@jest/globals'; // https://jestjs.io/docs/expect
+import { strict as assert } from 'node:assert';         // https://nodejs.org/api/assert.html
 
-test('Write your tests in this file', () => {
-    assert.fail('No tests written');
+import { finnishDateString } from '../dateFormatter';   // the function to be tested
+
+
+test('remove this test when writing your own tests', () => {
+    assert.fail('no tests written');
 });

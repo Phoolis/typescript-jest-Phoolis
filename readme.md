@@ -45,57 +45,15 @@ export function finnishDateString(date: Date): string {
 Yllä esitetty valmis koodi sisältää virheitä, joiden vuoksi muodostetut merkkijonot eivät välttämättä vastaa odotettuja. Tässä tehtävässä sinun tulee kirjoittaa yksikkötestit bugiselle funktiolle ja tehdä tarvittavat toimet funktion korjaamiseksi.
 
 
-### Ohjelman aikavyöhykkeet 🕚 vs. 🕐
-
-**Tehtävän tavoitteena ei ole ratkoa mahdollisia aikavyöhykkeisiin liittyviä ongelmia, eivätkä etsittävät bugit liity aikavyöhykkeisiin.**
-
-Aikavyöhykkeisiin ja kesä- sekä talviaikaan liittyvien mahdollisten ongelmien välttämiseksi on kuitenkin hyvä tiedostaa, että annetussa koodissa esiintyvät metodit kuten `date.getDate()` ja `date.getFullYear()` saattavat palauttaa samalle ajanhetkelle eri arvoja käyttöjärjestelmän aikavyöhykkeestä riippuen.
-
-Esimerkkinä voidaan käsitellä seuraavaa konkreettista tilannetta, jossa samaa ajanhetkeä käytettään kahdella eri aikavyöhykkeellä:
-
-```ts
-// Tammikuun 1. päivä 2025
-let date = new Date('2025-01-01'); // UTC-aikavyöhyke
-
-// Suomessa paikallinen aika on UTC:tä edellä:
-process.env.TZ = 'Europe/Helsinki';
-console.log(date.getDate());        // 1
-console.log(date.getFullYear());    // 2025
-console.log(date.getHours());       // 2
-
-// USA:ssa paikallinen aika on UTC:tä jäljessä:
-process.env.TZ = 'US/Eastern';
-console.log(date.getDate());        // 31
-console.log(date.getFullYear());    // 2024
-console.log(date.getHours());       // 19
-
-// Ilmiön havainnollistamiseksi käytetty aikavyöhykkeen
-// vaihtaminen `process.env.TZ`-muuttujan avulla ei toimi
-// kaikissa tapauksissa: https://stackoverflow.com/q/8083410
-```
-
-Yllä oleva esimerkki näyttää, miten tietty ajanhetki saattaa palauttaa odottamattomia arvoja riippuen siitä, millä aikavyöhykkeellä ohjelma suoritetaan. GitHub classroom -testit suoritetaan eri aikavyöhykkeellä kuin millä kirjoitat koodisi, joten sekaannuksia ei voida poissulkea.
-
-Luodessasi `Date`-olioita merkkijonojen perusteella, ne tulkitaan UTC-ajaksi, mikäli merkkijonossa ei esiinny kellonaikaa. Jos taas lisäät mukaan kellonajan, tulkitaan se paikalliseksi ajaksi:
-
-> *"Date-only strings (e.g. "1970-01-01") are treated as UTC, while date-time strings (e.g. "1970-01-01T12:00") are treated as local."*
->
-> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date#date_string
-
-Voit itse päättää, luotko testeissäsi käytettävät `Date`-oliot UTC-ajalla vai käyttäen paikallista aikavyöhykettä, molemmat saattavat tässä tehtävässä toimia. Mikäli kohtaat aikavyöhykeongelmia, suosittelemme tutustumaan [Date-luokan dokumentaatioon](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date) ja keskustelemaan aiheesta Teamsissa.
-
-
 ## GitHub classroom
 
-Tehtävä arvostellaan käyttäen [GitHub classroom](https://classroom.github.com/) -palvelua, joka suorittaa ohjelmasi ja tarkastaa sekä pisteyttää tulokset automaattisesti. Taustalla GitHub classroom hyödyntää [GitHub actions](https://github.com/features/actions) -nimistä jatkuvan integroinnin palvelua, johon tutustumme kurssilla lisää myöhemmillä viikoilla.
-
-Kun olet hyväksynyt tehtävän GitHub classroomissa ja saanut repositoriosta henkilökohtaisen kopion, kloonaa se itsellesi `git clone` -komennolla. Siirry sen jälkeen VS Codeen editoimaan tiedostoja.
+Tehtävä arvostellaan käyttäen [GitHub classroom](https://classroom.github.com/) -palvelua, joka suorittaa ohjelmasi ja tarkastaa sekä pisteyttää tulokset automaattisesti. Kun olet hyväksynyt tehtävän GitHub classroomissa ja saanut repositoriosta henkilökohtaisen kopion, kloonaa se itsellesi `git clone` -komennolla. Siirry sen jälkeen VS Codeen editoimaan tiedostoja.
 
 Kloonatessasi repositoriota **varmista, että Git-osoitteen lopussa on oma GitHub-käyttäjänimesi**. Jos käyttäjänimesi puuttuu osoitteesta, kyseessä ei ole henkilökohtainen kopiosi tehtävästä. Luo tässä tapauksessa oma classroom-kopio tehtävästä itsellesi Teams-tehtävästä löytyvän linkin avulla.
 
 Voit tarvittaessa lähettää tehtävän tarkastettavaksi monta kertaa. Tee tällöin uusi commit ja vie (push) muutokset GitHubiin. Varmista kuitenkin, että viimeisin tekemäsi commit tuottaa parhaat pisteet.
 
-💡 Automaattisen arvioinnin vuoksi et saa muuttaa `dateFormatter.ts`-tiedoston etkä sieltä julkaistavan `finnishDateString`-funktion nimeä tai parametreja.
+💡 *Automaattisen arvioinnin vuoksi et saa muuttaa `dateFormatter.ts`-tiedoston etkä sieltä julkaistavan `finnishDateString`-funktion nimeä tai parametreja.*
 
 
 ## Riippuvuuksien asentaminen
@@ -140,7 +98,7 @@ Yllä [Jest-komennolle](https://jestjs.io/docs/cli) annetaan kaksi parametria, j
 
 * `--coverage` *"Indicates that test coverage information should be collected and reported in the output."* ([jestjs.io](https://jestjs.io/docs/cli))
 
-Älä muuta testien käynnistyskomentoa. Mikäli testit eivät mene läpi, kiinnitä erityisesti huomiota saamasi virheraportin *Message*-kohtiin.
+💡 *Älä muuta testien käynnistyskomentoa. Mikäli testit eivät mene läpi, kiinnitä erityisesti huomiota saamasi virheraportin **Message**-kohtiin.*
 
 
 ## Osa 1: Omien testien kirjoittaminen (2p)
@@ -190,7 +148,57 @@ Tutustu siis JavaScriptin `Date`-luokan dokumentaatioon esimerkiksi [Mozillan md
 Voit kysellä lisää vinkkejä kurssin keskustelukanavalla.
 
 
-## Date-luokan historia ja tulevaisuus
+## 🚀 Ohjelman aikavyöhykkeet 🕚 vs. 🕐
+
+**Tehtävän tavoitteena ei ole ratkoa mahdollisia aikavyöhykkeisiin liittyviä ongelmia, eivätkä etsittävät bugit liity aikavyöhykkeisiin.**
+
+Aikavyöhykkeisiin ja kesä- sekä talviaikaan liittyvien mahdollisten ongelmien välttämiseksi on kuitenkin hyvä tiedostaa, että annetussa koodissa esiintyvät metodit kuten `date.getDate()` ja `date.getFullYear()` saattavat palauttaa samalle ajanhetkelle eri arvoja käyttöjärjestelmän aikavyöhykkeestä riippuen. GitHub classroom -testit suoritetaan eri aikavyöhykkeellä kuin millä kirjoitat koodisi, joten sekaannuksia ei voida poissulkea.
+
+Esimerkkinä voidaan käsitellä seuraavaa konkreettista tilannetta, jossa samaa ajanhetkeä käytettään kahdella eri aikavyöhykkeellä - ensin Suomessa, sitten USA:n itärannikolla:
+
+```ts
+// 1.1.2025. `new Date` käyttää UTC-aikavyöhykettä:
+let date = new Date('2025-01-01');
+
+// Suomessa paikallinen aika on UTC:tä edellä:
+process.env.TZ = 'Europe/Helsinki';
+
+console.log(date.getDate());        // 1
+console.log(date.getFullYear());    // 2025
+console.log(date.getHours());       // 2
+```
+
+```ts
+// 1.1.2025. `new Date` käyttää UTC-aikavyöhykettä:
+let date = new Date('2025-01-01');
+
+// USA:ssa paikallinen aika on UTC:tä jäljessä:
+process.env.TZ = 'US/Eastern';
+
+console.log(date.getDate());        // 31
+console.log(date.getFullYear());    // 2024
+console.log(date.getHours());       // 19
+
+// Tässä Date-olio, joka luotiin parametrilla "2025-01-01",
+// "muuttui" aikavyöhykkeestä johtuen päiväksi 31.12.2024.
+
+// 💡 Ilmiön havainnollistamiseksi käytetty aikavyöhykkeen
+// vaihtaminen `process.env.TZ`-muuttujan avulla ei toimi
+// kaikissa tapauksissa: https://stackoverflow.com/q/8083410
+```
+
+Yllä oleva esimerkki näyttää, miten tietty ajanhetki saattaa palauttaa odottamattomia arvoja riippuen siitä, millä aikavyöhykkeellä ohjelma suoritetaan.
+
+Luodessasi `Date`-olioita merkkijonojen perusteella, ne tulkitaan UTC-ajaksi, mikäli merkkijonossa ei esiinny kellonaikaa. Jos taas lisäät mukaan kellonajan, tulkitaan se paikalliseksi ajaksi:
+
+> *"Date-only strings (e.g. "1970-01-01") are treated as UTC, while date-time strings (e.g. "1970-01-01T12:00") are treated as local."*
+>
+> https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date#date_string
+
+Voit itse päättää, luotko testeissäsi käytettävät `Date`-oliot UTC-ajalla vai käyttäen paikallista aikavyöhykettä, molemmat saattavat tässä tehtävässä toimia. Mikäli kohtaat aikavyöhykeongelmia, suosittelemme tutustumaan [Date-luokan dokumentaatioon](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date) ja keskustelemaan aiheesta Teamsissa.
+
+
+## 🚀 Date-luokan historia ja tulevaisuus
 
 Tehtävässä ilmenneet bugit johtuvat mahdollisesti joistain `Date`-luokan epäloogisuuksista, jotka ovat alalla varsin tunnettuja:
 
