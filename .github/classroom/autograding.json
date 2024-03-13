@@ -1,0 +1,24 @@
+{
+    "tests": [
+      {
+        "name": "Part 1: Writing your own tests",
+        "setup": "npm install",
+        "run": "npm test || true",
+        "input": "",
+        "output": "dateFormatter.ts",
+        "comparison": "included",
+        "timeout": 1,
+        "points": 2
+      },
+      {
+        "name": "Part 2: Finding and fixing the bugs in the function",
+        "setup": "cat .github/tests.txt | base64 --decode > src/tests/allBugsNeedToBeFixed.test.ts",
+        "run": "npm test",
+        "input": "",
+        "output": "",
+        "comparison": "included",
+        "timeout": 1,
+        "points": 3
+      }
+    ]
+  }
