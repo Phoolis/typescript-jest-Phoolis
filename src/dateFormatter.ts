@@ -1,11 +1,26 @@
 const dayNames: readonly string[] = [
-    'maanantai', 'tiistai', 'keskiviikko',
-    'torstai', 'perjantai', 'lauantai', 'sunnuntai'
+  "sunnuntai",
+  "maanantai",
+  "tiistai",
+  "keskiviikko",
+  "torstai",
+  "perjantai",
+  "lauantai",
 ];
 
 const monthNames: readonly string[] = [
-    'tammi', 'helmi', 'maalis', 'huhti', 'touko', 'kesä',
-    'heinä', 'elo', 'syys', 'loka', 'marras', 'joulu'
+  "tammi",
+  "helmi",
+  "maalis",
+  "huhti",
+  "touko",
+  "kesä",
+  "heinä",
+  "elo",
+  "syys",
+  "loka",
+  "marras",
+  "joulu",
 ];
 
 /**
@@ -16,11 +31,11 @@ const monthNames: readonly string[] = [
  * @returns the formatted string, in Finnish
  */
 export function finnishDateString(date: Date): string {
-    const dayName = dayNames[date.getDay() - 1];
-    const monthName = monthNames[date.getMonth() - 1];
+  const dayName = dayNames[date.getDay()];
+  const monthName = monthNames[date.getMonth()];
 
-    const day = date.getDate();
-    const year = date.getFullYear();
+  const day = date.getDate();
+  const year = date.getFullYear();
 
-    return `${dayName} ${day}. ${monthName}kuuta ${year}`;
+  return `${dayName} ${day}. ${monthName}kuuta ${year}`;
 }
